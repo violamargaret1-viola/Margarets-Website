@@ -66,6 +66,48 @@
   .nav-social a:hover { color: var(--gold); }
   .nav-social svg { width: 18px; height: 18px; }
 
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-left: auto;
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--dark);
+    border-radius: 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  nav.nav-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  nav.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -590,8 +632,40 @@
     .tour-item { grid-template-columns: 80px 1fr; }
     .tour-ticket { display: none; }
     .form-row { grid-template-columns: 1fr; }
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
+    nav { padding: 1rem 1.25rem; flex-wrap: wrap; align-items: center; }
+    .nav-toggle { display: flex; flex-shrink: 0; }
+    .nav-menu {
+      margin-left: 0;
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding-top: 0;
+      border-top: 1px solid transparent;
+    }
+    nav.nav-open .nav-menu {
+      max-height: 24rem;
+      padding-top: 1rem;
+      border-top-color: var(--line);
+    }
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+    .nav-links li { border-bottom: 1px solid rgba(184,151,58,0.12); }
+    .nav-links li:last-of-type { border-bottom: none; }
+    .nav-links a {
+      display: block;
+      padding: 0.7rem 0;
+    }
+    .nav-social {
+      margin-left: 0;
+      padding-top: 0.5rem;
+    }
     section { padding: 5rem 1.5rem; }
   }
 </style>
@@ -601,7 +675,12 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Margaret O'Malley</div>
-  <div style="display:flex;align-items:center;gap:2.5rem;">
+  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+  </button>
+  <div id="nav-menu" class="nav-menu">
     <ul class="nav-links">
       <li><a href="#bio">Bio</a></li>
       <li><a href="#teaching">Teaching</a></li>
@@ -812,6 +891,32 @@
   <div class="footer-copy footer-credits">Photos by Jared Jones and Monica Hindmarsh</div>
 </footer>
 
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  var btn = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('nav-menu');
+  if (!nav || !btn || !menu) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('nav-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  btn.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('nav-open'));
+  });
+
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.matchMedia('(min-width: 901px)').matches) setOpen(false);
+  });
+})();
+</script>
 
 </body>
 </html>
