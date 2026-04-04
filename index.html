@@ -885,7 +885,7 @@
       <div class="form-submit">
         <button type="submit" class="btn-gold">Send Message</button>
       </div>
-      <input type="hidden" name="_next" value="https://margaretomalley.com/#home">
+      <input type="hidden" name="_next" id="form-redirect-next" value="">
       <input type="hidden" name="_subject" value="New inquiry from margaretomalley.com">
     </form>
   </div>
@@ -928,6 +928,19 @@
 
   window.addEventListener('resize', function () {
     if (window.matchMedia('(min-width: 901px)').matches) setOpen(false);
+  });
+})();
+
+(function () {
+  var form = document.querySelector('.contact-form');
+  var next = document.getElementById('form-redirect-next');
+  if (!form || !next) return;
+  form.addEventListener('submit', function () {
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      next.value = location.href.split('#')[0] + '#contact';
+    } else {
+      next.removeAttribute('name');
+    }
   });
 })();
 </script>
