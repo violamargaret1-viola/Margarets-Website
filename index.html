@@ -646,7 +646,7 @@
       <img src="photos/standing-o.JPG" alt="Margaret O'Malley" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;filter:sepia(10%) contrast(1.05);">
     </div>
     <div class="bio-content">
-      <h3>Houston-based violist</h3>
+      <h3>Houston-based Violist</h3>
       <p>Margaret O'Malley is graduating in 2026 with a Master's Degree in Viola Performance at the Shepherd School of Music at Rice University in the studio of Ivo van der Werff. Previously, she studied under Misha Amory and Heidi Castleman at The Juilliard School.</p>
       <p>Originally hailing from Illinois, Margaret has been recognized for her solo and chamber music performances on both violin and viola by The Chicago Musicians Club of Women Awards Competition, The Rembrandt Chamber Musicians High School Chamber Music Competition, The DuPage Symphony Orchestra Young Artist Auditions, and The ENKOR International Competition.</p>
       <p>She has soloed with numerous orchestras in the Chicagoland area, including The Elmhurst Symphony Orchestra and The Oistrakh Symphony of Chicago. During the summer, Margaret has attended The Meadowmount School of Music, The Aspen Music Festival and School, and the Bowdoin International Music Festival.</p>
@@ -671,11 +671,11 @@
       </div>
       <h3>What I Offer</h3>
       <ul class="teaching-offerings">
-        <li>Private violin and viola lessons</li>
-        <li>Audition &amp; competition preparation</li>
-        <li>Chamber music coaching</li>
-        <li>Music theory &amp; ear training</li>
-        <li>Online &amp; in-person sessions available</li>
+        <li>Private Violin &amp; Viola Lessons</li>
+        <li>Audition &amp; Competition Preparation</li>
+        <li>Chamber Music Coaching</li>
+        <li>Music Theory &amp; Ear Training</li>
+        <li>Online &amp; In-Person Sessions Available</li>
       </ul>
       <a href="#contact" class="btn-trial">Book a Trial Lesson</a>
     </div>
@@ -763,31 +763,31 @@
     <form class="contact-form" action="https://formsubmit.co/violamargaret1@gmail.com" method="POST">
       <div class="form-row">
         <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="Jane" required>
+          <label for="first_name">First Name</label>
+          <input id="first_name" type="text" name="first_name" placeholder="Jane" required autocomplete="given-name">
         </div>
         <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Smith">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" type="text" name="last_name" placeholder="Smith" autocomplete="family-name">
         </div>
       </div>
       <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="jane@example.com" required>
+        <label for="email">Email Address</label>
+        <input id="email" type="email" name="email" placeholder="jane@example.com" required autocomplete="email">
       </div>
       <div class="form-group">
-        <label>Enquiry Type</label>
-        <select>
-          <option>Lesson Inquiry</option>
-          <option>Private Event</option>
-          <option>Collaboration</option>
-          <option>Press / Media</option>
-          <option>General Enquiry</option>
+        <label for="enquiry_type">Enquiry Type</label>
+        <select id="enquiry_type" name="enquiry_type">
+          <option value="Lesson Inquiry">Lesson Inquiry</option>
+          <option value="Private Event">Private Event</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Press / Media">Press / Media</option>
+          <option value="General Enquiry">General Enquiry</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell me about your event, date, location, and any other details..." required></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me about your event, date, location, and any other details..." required></textarea>
       </div>
       <div class="form-submit">
         <button type="submit" class="btn-gold">Send Message</button>
