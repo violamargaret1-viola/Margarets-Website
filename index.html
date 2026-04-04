@@ -620,6 +620,20 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--dark);
+    }
+    .hero-photo {
+      top: calc(4.75rem + env(safe-area-inset-top, 0px));
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .hero-photo img {
+      object-position: center 28%;
+    }
     .hero-content { flex-direction: column; align-items: flex-start; padding: 0 2rem 3rem; gap: 2rem; transform: none; }
     .hero-content { flex-direction: column; padding: 0 2rem 3rem; transform: none; }
     .hero-quote { max-width: 100%; font-size: 1.5rem; }
